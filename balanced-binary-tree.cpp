@@ -16,6 +16,7 @@ public:
         return caculate_helper(root) != -1;
     }
 
+    // return value: -1 means not balanced otherwise the depth
     int caculate_helper(TreeNode const* node)
     {
         if (node == NULL)
@@ -24,15 +25,15 @@ public:
         }
 
         int left = caculate_helper(node->left);
+        if (left == -1)
+            return -1;
         int right = caculate_helper(node->right);
+        if (right == -1)
+            return -1;
 
-        bool balance = false;
-        if (left != -1 && right != -1) {
-
-            balance = abs(left - right) > 1 ? false : true;
-            if(balance)
-                return max(left, right) + 1;
-        }
+        bool balance = abs(left - right) > 1 ? false : true;
+        if(balance)
+            return max(left, right) + 1;
 
         return -1;
     }
