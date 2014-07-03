@@ -1,4 +1,5 @@
 #include <vector>
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -19,6 +20,16 @@ public:
                 matrix[n-1-i][n-1-j] = matrix[j][n-1-i];
                 matrix[j][n-1-i] = temp;
             }
+    }
+
+    void rotate2(vector<vector<int> > &matrix )
+    {
+        // a more elegant way
+        reverse(matrix.begin(), matrix.end());
+
+        for (size_t i = 0; i < matrix.size(); ++i)
+            for(size_t j = i + 1; j < matrix[i].size(); ++j)
+                swap(matrix[i][j], matrix[j][i]);
     }
 };
 
