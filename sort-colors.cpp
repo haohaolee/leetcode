@@ -3,24 +3,44 @@
 // 0 red
 // 1 white
 // 2 blue
+// one pass
 using namespace std;
 
 class Solution {
 public:
     void sortColors(int A[], int n) {
-       int temp[3] = {};
-       for (size_t i = 0; i < n; ++i)
+       size_t redIndex = 0;
+       while (redIndex < n-1 && A[redIndex] == 0)
+           ++redIndex;
+
+       if (redIndex == n-1)
+           return;
+
+       size_t blueIndex = n-1;
+       while (blueIndex > 0 && A[blueIndex] == 2)
+           --blueIndex;
+
+       if (blueIndex == 0)
+           return;
+       
+       size_t i = redIndex;
+       while (i <= blueIndex)
        {
-           ++temp[A[i]];
-       }
-
-       size_t index = 0;
-       for (size_t i = 0; i < 3; ++i)
-           for (size_t j = 0; j < temp[i]; ++j)
+           if (A[i] == 0)
            {
-               A[index++] = i;
+               swap(A[redIndex], A[i]);
+               redIndex++;
            }
-
+           else if (A[i] == 2)
+           {
+               swap(A[blueIndex], A[i]);
+               blueIndex--;
+           }
+           else
+           {
+               i++;
+           }
+       }
     }
 };
 
