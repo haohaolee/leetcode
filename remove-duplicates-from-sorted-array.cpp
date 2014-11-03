@@ -20,7 +20,7 @@ public:
             if (search_index != curr_index + 1);
                 std::copy(A + search_index, A + n, A + curr_index + 1);
 
-            n = n - (search_index - curr_index - 1);
+            n -= (search_index - curr_index - 1);
             curr_index++;
         }
         return n;
@@ -47,14 +47,32 @@ public:
         }
 
         return n;
+    }
 
+    int removeDuplicates3(int A[], int n)
+    {
+        if (n < 2)
+            return n;
+        int i = 0, j = i + 1;
+        while (j < n)
+        {
+            if (A[i] == A[j])
+            {
+                ++j;
+            }
+            else
+            {
+                A[++i] = A[j];
+            }
+        }
+        return i + 1;
     }
 };
 
 int main()
 {
     int A[] = {1, 1, 2, 2, 2, 3};
-    int n = Solution().removeDuplicates2(A, 6);
+    int n = Solution().removeDuplicates3(A, 6);
     for (int i = 0; i < n; ++i)
     {
         std::cout << A[i] << ' ';
