@@ -10,48 +10,24 @@ struct ListNode {
 class Solution {
 public:
     ListNode *partition(ListNode *head, int x) {
-        ListNode *part1 = NULL, *head1 = NULL;
-        ListNode *part2 = NULL, *head2 = NULL;
-        ListNode *current = head;
-        while (current != NULL)
+        ListNode *low = NULL; ListNode **p1 = &low;
+        ListNode *high = NULL; ListNode **p2 = &high;
+        while (head != NULL)
         {
-            if (current->val < x)
+            if (head->val < x)
             {
-                if (head1 == NULL)
-                {
-                    head1 = part1 = current;
-                }
-                else
-                {
-                    part1->next = current;
-                    part1 = current;
-                }
+                *p1 = head; p1 = &(head->next);
             }
             else
             {
-                if (head2 == NULL)
-                {
-                    head2 = part2 = current;
-                }
-                else
-                {
-                    part2->next = current;
-                    part2 = current;
-                }
+                *p2 = head; p2 = &(head->next);
             }
-            current = current->next;
+            head = head->next;
         }
+        *p1 = high;
+        *p2 = NULL;
 
-        if (part2 != NULL)
-            part2->next = NULL;
-
-        if (head1 != NULL)
-        {
-            part1->next = head2;
-            return head1;
-        }
-
-        return head2;
+        return low;
     }
 };
 
