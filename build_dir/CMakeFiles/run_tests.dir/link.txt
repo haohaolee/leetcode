@@ -1,3 +1,0 @@
-D:\Dev\CMake\bin\cmake.exe -E remove -f CMakeFiles\run_tests.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\run_tests.dir/objects.a @CMakeFiles\run_tests.dir\objects1.rsp
-C:\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\run_tests.dir/objects.a -Wl,--no-whole-archive  -o run_tests.exe -Wl,--out-implib,librun_tests.dll.a -Wl,--major-image-version,0,--minor-image-version,0  C:\MinGW\lib\libgtest.a C:\MinGW\lib\libgtest_main.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
