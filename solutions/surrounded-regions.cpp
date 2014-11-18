@@ -90,7 +90,7 @@ private:
     {
         size_t rows = board.size();
         size_t columns = board[0].size();
-        if (x < 0 || y < 0 || x >= rows || y >= columns)
+        if (x < 0 || y < 0 || (size_t)x >= rows || (size_t)y >= columns)
             return false;
         if (board[x][y] == 'O')
             return true;

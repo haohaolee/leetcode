@@ -9,7 +9,7 @@ using namespace std;
 class Solution {
 public:
     void sortColors(int A[], int n) {
-       size_t redIndex = 0;
+       int redIndex = 0;
        while (redIndex < n-1 && A[redIndex] == 0)
            ++redIndex;
 
@@ -44,13 +44,4 @@ public:
     }
 };
 
-/*int main()
-{
-    int A[2] = {0, 1};
-    Solution().sortColors(A, 2);
-    for (int i : A)
-        cout << i << ' ';
-    cout.flush();
-}
-*/
 
