@@ -11,7 +11,6 @@ public:
         for (string::const_iterator cit = s.begin();
              cit != s.end(); ++cit)
         {
-            char p;
             switch (*cit)
             {
                 case '{':
@@ -40,12 +39,6 @@ public:
         return sk.empty();
     }
 };
-
-/*int main()
-{
-    string s = "()";
-    cout << Solution().isValid(s) << endl;
-}*/
 
 
 
