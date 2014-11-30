@@ -4,12 +4,11 @@
 #include <algorithm>
 #include <gtest/gtest.h>
 
-
+namespace {
 class Solution {
 public:
     int search(int A[], int n, int target) {
         begin = A[0];
-        end = A[n-1];
         int *it = std::lower_bound(A, A+n, target, *this);
         if (it == A+n || *it != target)
             return -1;
@@ -25,20 +24,18 @@ public:
     }
 
 private:
-    bool cmp(int l, int r) // l < r
+    bool cmp(int l, int r) // assuming r < r
     {
-        if (l >= begin)
-            return true;
-        if (r <= end)
+        if (l >= begin || r < begin)
             return true;
         return false;
     }
 
 private:
     int begin;
-    int end;
 };
 
+}
 
 TEST(search_in_rotated_sorted_array, case1)
 {
