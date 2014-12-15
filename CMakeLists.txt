@@ -31,9 +31,11 @@ endif ()
 enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
+include_directories("util")
 
 file(GLOB SOLUTIONS
     "solutions/*.cpp"
+    "util/*.cpp"
 )
 
 # Link runTests with gtest
