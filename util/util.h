@@ -1,5 +1,5 @@
 /**
-* Utility functions. by metacpp@github
+* Utility functions.
 */
 
 #ifndef LEETCPP_SOLUTIONS_UTIL_H_

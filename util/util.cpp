@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <utility>
+#include <stdexcept>
 using namespace std;
 
 #include "util.h"
@@ -210,17 +211,22 @@ string trim(const string& data, const string& pattern) {
 //
 
 vector<ListNode *> build_linked_list_of_vector(string const& data) {
-   istringstream ss(data);
-   string token;
+	vector<ListNode*> lists;
+	string::size_type start = 0, end = 0;
+	while (true) {
+		start = data.find_first_of('{', start);
+		if (start == string::npos)
+			break;
 
-   vector<ListNode *> lists;
-   while (getline(ss, token, ',')) {
-       token = trim(token, "[()");
-       ListNode *node = build_linked_list(token);
-       lists.push_back(node);
-   }
+		end = data.find_first_of('}', start + 1);
+		if (end == string::npos)
+			throw runtime_error("no matching }");
+		auto node = build_linked_list(data.substr(start + 1, end - start - 1));
+		lists.push_back(node);
+		start = end + 1;
+	}
 
-   return lists;
+	return lists;
 }
 
 void destroy_linked_list_of_vector(vector<ListNode *> const &lists) {
@@ -239,6 +245,7 @@ string output_linked_list_of_vector(vector<ListNode*> const& lists) {
         auto const last = end(lists) - 1;
         while (it != last) {
             ss << '{' << output_linked_list(*it) << "},";
+			++it;
         }
 
         ss << '{' << output_linked_list(*last) << '}';
