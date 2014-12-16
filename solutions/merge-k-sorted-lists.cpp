@@ -5,14 +5,9 @@
 #include <algorithm>
 #include <functional>
 #include <gtest/gtest.h>
+#include <util.h>
 
 namespace {
-struct ListNode {
-     int val;
-     ListNode *next;
-     ListNode(int x) : val(x), next(NULL) {}
- };
- 
 class Solution {
 public:
     ListNode *mergeKLists(std::vector<ListNode *> &lists) {
@@ -59,4 +54,38 @@ public:
 };
 
 }
+
+
+TEST(merge_k_sorted_lists, case1)
+{
+    std::string data = "[{7},{49},{73},{58},{30},{72},{44},{78},{23},{9}]";
+    std::string result = "7,9,23,30,44,49,58,72,73,78";
+
+    std::vector<ListNode*> vec = build_linked_list_of_vector(data);
+    ListNode* root = Solution().mergeKLists(vec);
+
+    std::string output = output_linked_list(root);
+    EXPECT_EQ(result, output);
+
+    destroy_linked_list_of_vector(vec);
+    destroy_linked_list(root);
+
+}
+
+TEST(merge_k_sorted_lists, case2)
+{
+    std::string data = "[{7,8},{49,100},{73},{44,88},{78,79},{23,67},{9,10}]";
+    std::string result = "7,8,9,10,23,44,49,67,73,78,79,88,100";
+
+    std::vector<ListNode*> vec = build_linked_list_of_vector(data);
+    ListNode* root = Solution().mergeKLists(vec);
+
+    std::string output = output_linked_list(root);
+    EXPECT_EQ(result, output);
+
+    destroy_linked_list_of_vector(vec);
+    destroy_linked_list(root);
+
+}
+
 
