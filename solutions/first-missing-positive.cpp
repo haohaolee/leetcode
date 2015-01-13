@@ -27,9 +27,9 @@ public:
         int target = A[index];
         while (target > 0 && target <= n && expect != target)
         {
-            std::swap(A[index], A[target-1]);
-            if (target == A[index])
+            if (target == A[target-1])
                 break;
+            std::swap(A[index], A[target-1]);
             target = A[index];
         }
     }
